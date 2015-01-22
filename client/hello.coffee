@@ -1,5 +1,6 @@
 GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='
-GOOGLE_MAPS_API_KEY = '&key=AIzaSyCs7eId7TLd46-tJH-9NeT4KMZHf2qOKzI'
+#GOOGLE_MAPS_API_KEY = '&key=AIzaSyCs7eId7TLd46-tJH-9NeT4KMZHf2qOKzI'
+GOOGLE_MAPS_API_KEY = ''
 
 Template.hello.events
     'click button': ->
@@ -7,14 +8,10 @@ Template.hello.events
         if e?
           alert (e.message)
         else
-          l = Geolocation.latLng()
-          if l
-            url = GOOGLE_MAPS_API_URL + l.lat + ',' + l.lng + GOOGLE_MAPS_API_KEY
-            $.getJSON url, (res)->
-              if res.status is 'OK'
-                a = res.results[0].formatted_address
-                z = res.results[1].address_components[0].long_name
-              myColl.insert {time:new Date(), pic:r, loc:l, address:a, zip:z}
+          l = Session.get 'myloc'
+          a = Session.get 'myaddr'
+          z = Session.get 'myzip'
+          myColl.insert {time:new Date(), pic:r, loc:l, address:a, zip:z}
           uploadCount = (Session.get 'mycount') or 0
           uploadCount += 1
           Session.set 'mycount', uploadCount
@@ -31,6 +28,18 @@ Template.hello.events
 Template.hello.helpers
   pos:->
     Geolocation.latLng()
+  addr:(l)->
+    console.log l
+    Session.set 'myloc', l
+    if l
+      url = GOOGLE_MAPS_API_URL + l.lat + ',' + l.lng + GOOGLE_MAPS_API_KEY
+      $.getJSON url, (res)->
+        if res.status is 'OK'
+          a = res.results[0].formatted_address
+          z = res.results[1].address_components[0].long_name
+          Session.set 'myaddr', a
+          Session.set 'myzip', z
+    return Session.get 'myaddr' 
   pictures:(l)->
     if l
       url = GOOGLE_MAPS_API_URL + l.lat + ',' + l.lng + GOOGLE_MAPS_API_KEY
@@ -39,10 +48,3 @@ Template.hello.helpers
         Session.set 'zip', res.results[1].address_components[0].long_name if res.status is 'OK'
         return
       myColl.find({zip: zipCode}, {sort:{time:-1}}) if zipCode
-  addr:(l)->
-    if l
-      url = GOOGLE_MAPS_API_URL + l.lat + ',' + l.lng + GOOGLE_MAPS_API_KEY
-      $.getJSON url, (res)->
-        Session.set '_address', res.results[0].formatted_address if res.status is 'OK'
-        return
-      Session.get '_address'
