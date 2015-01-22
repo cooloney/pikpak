@@ -27,13 +27,19 @@ Template.hello.helpers
   position:->
     Geolocation.latLng()
   address:->
-    #l = Geolocation.latLng()
-    l =
-      'lat': 37.3539663
-      'lng': -121.9529992
-    console.log l
-    url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + l.lat + ',' + l.lng+ '&key=AIzaSyCs7eId7TLd46-tJH-9NeT4KMZHf2qOKzI'
-    console.log url
-    $.getJSON url, (res)->
-       console.log res.results[0].formatted_address
-       res.results[0].formatted_address
+    sessionAddress = Session.get 'address'
+    if sessionAddress?
+        return sessionAddress
+    else
+        
+        #l = Geolocation.latLng()
+        l =
+          'lat': 37.3539663
+          'lng': -121.9529992
+        console.log l
+        url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + l.lat + ',' + l.lng+ '&key=AIzaSyCs7eId7TLd46-tJH-9NeT4KMZHf2qOKzI'
+        console.log url
+        $.getJSON url, (res)->
+           console.log res.results[0].formatted_address
+           Session.set 'address', res.results[0].formatted_address
+        return ''
