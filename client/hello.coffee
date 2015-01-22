@@ -27,8 +27,7 @@ Template.hello.events
 
 Template.hello.helpers
   pos:->
-    Geolocation.latLng()
-  addr:(l)->
+    l = Geolocation.latLng()
     console.log l
     Session.set 'myloc', l
     if l
@@ -39,12 +38,15 @@ Template.hello.helpers
           z = res.results[1].address_components[0].long_name
           Session.set 'myaddr', a
           Session.set 'myzip', z
-    return Session.get 'myaddr' 
+    return l
+
+  addr:->
+    Session.get 'myaddr' 
+
+  zip:->
+    Session.get 'myzip' 
+
   pictures:(l)->
     if l
-      url = GOOGLE_MAPS_API_URL + l.lat + ',' + l.lng + GOOGLE_MAPS_API_KEY
-      zipCode = (Session.get 'zip') or ''
-      $.getJSON url, (res)->
-        Session.set 'zip', res.results[1].address_components[0].long_name if res.status is 'OK'
-        return
+      zipCode = (Session.get 'myzip') or ''
       myColl.find({zip: zipCode}, {sort:{time:-1}}) if zipCode
