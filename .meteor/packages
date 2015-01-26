@@ -12,3 +12,4 @@ mdg:camera
 less
 mdg:geolocation
 jquery
+iron:router

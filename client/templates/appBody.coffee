@@ -1,12 +1,10 @@
 GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='
 
-Template.hello.events
-    'click button.switch-mode': ->
-      m = (Session.get 'mymode') or 0
-      m = !m
-      Session.set 'mymode', m
+Template.appBody.events
+    'click .js-switch':->
+      Session.set 'mymode', not Session.get 'mymode'
 
-    'click button.take-a-pic': ->
+    'click .js-shot':->
       MeteorCamera.getPicture {}, (e,r)->
         if e?
           alert (e.message)
@@ -28,7 +26,7 @@ Template.hello.events
       else
         alert "You cannot delete more pictures than you uploaded (#{uploadCount} pictures)"
 
-Template.hello.helpers
+Template.appBody.helpers
   pos:->
     l = Geolocation.latLng()
     if l
@@ -52,10 +50,7 @@ Template.hello.helpers
 
   mode:->
     m = Session.get 'mymode'
-    if m
-      return "local"
-    else
-      return "global"
+    if m then "global" else "local"
 
   pictures:->
     m = Session.get 'mymode'

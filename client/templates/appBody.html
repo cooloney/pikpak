@@ -1,0 +1,20 @@
+<template name="appBody">
+  <div id="container">
+    <div id="content-container">
+	<div class="content-scrollable">
+          <div class="list-image">
+            {{#each pictures pos}}
+              <div class="item-image">
+                <img data-id={{_id}} class='small-image' src='{{pic}}'/>
+              </div>
+            {{/each}}
+           </div>
+        </div>
+        <div class="btns-group">
+	   <a class='js-switch btn-secondary'><i class="fa fa-exchange fa-2x"></i></a>
+	   <a class='btn-secondary'>PIK PAK</a>
+	   <a class='js-shot btn-secondary'><i class="fa fa-camera-retro fa-2x"></i></a>
+	</div>
+    </div>
+  </div>
+</template>
