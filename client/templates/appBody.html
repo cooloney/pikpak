@@ -7,6 +7,9 @@
             {{#each pictures pos}}
               <div class="pin">
                 <img data-id="{{_id}}" class="js-thumb" src="{{pic}}"/>
+                {{#each comments}}
+                  <p> {{this}} </p>
+                {{/each}}
               </div>
             {{/each}}
           </div>

@@ -12,7 +12,7 @@ Template.appBody.events
           l = Session.get 'myloc'
           a = Session.get 'myaddr'
           z = Session.get 'myzip'
-          myColl.insert {time:new Date(), pic:r, loc:l, address:a, zip:z}
+          myColl.insert {time:new Date(), pic:r, loc:l, address:a, zip:z, comments:[]}
 
     'click img.js-thumb':(e,t)->
       id = e.target.getAttribute 'data-id'
@@ -34,12 +34,6 @@ Template.appBody.helpers
         else
            console.log res
     Session.get 'myloc'
-
-  addr:->
-    Session.get 'myaddr'
-
-  zip:->
-    Session.get 'myzip'
 
   mode:->
     m = Session.get 'mymode'
