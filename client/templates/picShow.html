@@ -1,5 +1,12 @@
 <template name="picShow">
- <div>
-   <img class="js-pic-show" data_id="{{_id}}" src="{{pic}}"/>
- </div>
+  <div id="wrapper">
+    <div id="columns">
+      <div class="pin">
+        <img class="js-pic-show" data_id="{{_id}}" src="{{pic}}"/>
+        {{#each comments}}
+          <p> {{this}} </p>
+        {{/each}}
+      </div>
+    </div>
+  </div>
 </template>

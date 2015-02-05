@@ -12,7 +12,8 @@ Template.appBody.events
           l = Session.get 'myloc'
           a = Session.get 'myaddr'
           z = Session.get 'myzip'
-          myColl.insert {time:new Date(), pic:r, loc:l, address:a, zip:z, comments:[]}
+          id = myColl.insert {time:new Date(), pic:r, loc:l, address:a, zip:z, comments:[]}
+          Router.go 'picShow', {_id: id}
 
     'click img.js-thumb':(e,t)->
       id = e.target.getAttribute 'data-id'
