@@ -36,10 +36,6 @@ Template.appBody.helpers
            console.log res
     Session.get 'myloc'
 
-  mode:->
-    m = Session.get 'mymode'
-    if m then "global" else "local"
-
   pictures:->
     m = Session.get 'mymode'
     if m # Global mode
