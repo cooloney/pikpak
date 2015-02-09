@@ -1,10 +1,10 @@
 Router.configure
-#  layoutTemplate: 'appBody',
-  notFoundTemplate: 'appNotFound'
+  layoutTemplate: 'tabsLayout'
 
-Router.route '/', 'appBody'
-
-Router.route '/picShow/:_id', (->
-  @render 'picShow', data: ->
-    myColl.findOne _id: @params._id
-), name: 'picShow'
+Router.map ->
+  @route 'home', path: '/'
+  @route 'picShow', path: '/picShow/:_id',
+    {data: ->
+      Pictures.findOne _id: @params._id}
+  @route 'settings', path: '/settings'
+  @route 'me', path: '/me'
