@@ -14,4 +14,4 @@ Template._tabs.events
                address : a
                zip : z
                comments : []
-        #Router.go 'picShow', {_id: id}
+        Router.go 'picShow', {_id: id}
