@@ -6,14 +6,16 @@
     {{> _tabsHeader}}
 
     {{#ionContent class="padding"}}
-      <div class="list card">
-       {{#each pictures pos}}
+      {{#each pictures pos}}
+       <div class="list card">
           <div class="item item-image">
             <img data-id="{{_id}}" class="full-image js-thumb" src="{{pic}}"/>
           </div>
-          <div class="item item-text-wrap">
-            {{comments}}
-          </div>
+          {{#if hasComments}}
+            <div class="item item-text-wrap">
+              {{comments}}
+            </div>
+          {{/if}}
           <div class="item tabs tabs-secondary tabs-icon-left">
             <a class="tab-item" href="#">
               <i class="icon ion-thumbsup"></i>
@@ -28,8 +30,8 @@
               Share
             </a>
           </div>
-        {{/each}}
-      </div>
+        </div>
+      {{/each}}
     {{/ionContent}}
 
     {{> _tabs}}

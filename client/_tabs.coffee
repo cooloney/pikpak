@@ -2,7 +2,7 @@ Template._tabs.events
   'click .js-shot':->
     MeteorCamera.getPicture {}, (e,r)->
       if e?
-        alert (e.message)
+        console.log e.message
       else
         l = Session.get 'myloc'
         a = Session.get 'myaddr'
