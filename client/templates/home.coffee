@@ -7,4 +7,8 @@ Template.home.helpers
   hasComments:->
     @comments.length
   pictures:->
-    Pictures.find({}, {sort:{time:-1}})
+    l = Geolocation.latLng()
+    if l
+      Session.set 'keyLocation', l
+      # Find documents in 3km range
+      Pictures.find {"loc": {$near : l, $maxDistance : 3/111.12}}, {sort : {time : -1}}
