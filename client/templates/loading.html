@@ -1,0 +1,14 @@
+<template name="loading">
+  {{#ionBody}}
+    {{#contentFor "headerTitle"}}
+      <h1 class="title">Pik Pak</h1>
+    {{/contentFor}}
+    {{#ionView}}
+      {{> _tabsHeader}}
+      {{#ionContent}}
+        {{loadingShow}}
+      {{/ionContent}}
+      {{> _tabs}}
+    {{/ionView}}
+  {{/ionBody}}
+</template>
