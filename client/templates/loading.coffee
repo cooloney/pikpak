@@ -1,6 +1,13 @@
-Template.loading.helpers
-  loadingShow: ->
-    IonLoading.show {
-      delay: 100,
-      duration: 3000
-    }
+Template.loading.rendered = ->
+  latLng = Geolocation.latLng()
+  console.log "out of autorun location:", latLng
+  @autorun ->
+    latLng = Geolocation.latLng()
+    console.log "now location:", latLng
+    if latLng?
+      IonLoading.hide()
+      Session.set 'keyLocation', latLng
+    else
+      IonLoading.show()
+        
+    

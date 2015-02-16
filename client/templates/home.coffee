@@ -1,3 +1,5 @@
+
+
 Template.home.events
   'click .js-pic-show':(event)->
     picId = event.target.getAttribute 'data-id'
