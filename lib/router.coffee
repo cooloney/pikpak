@@ -1,17 +1,14 @@
 Router.configure
   layoutTemplate: 'tabsLayout'
   loadingTemplate: 'loading'
-  # waitOn: ->
-  #   l = Geolocation.latLng()
-  #   if l
-  #     Session.set 'keyLocation', l
-  #     Meteor.subscribe 'Pictures', l
 
 Router.map ->
   @route 'home', 
     path: '/'
     action:->
-      if Session.get 'keyLocation'
+      latLng = Session.get 'keyLocation'
+      if latLng
+        Meteor.subscribe 'Pictures', latLng
         @render()
       else
         @render 'loading'
