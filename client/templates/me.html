@@ -9,7 +9,14 @@
     {{> _tabsHeader}}
 
     {{#ionContent class="padding"}}
-      <h1>HEHEHE</h1>
+      {{#ionList}}
+        {{#each myItems}}
+          {{#ionItem buttonRight=true}}
+            <h2>My {{this}}</h2>
+            <button class="button button-clear js-my-{{this}}">{{> ionIcon icon="chevron-right"}}</button>
+          {{/ionItem}}
+        {{/each}}
+      {{/ionList}}
     {{/ionContent}}
 
     {{> _tabs}}
