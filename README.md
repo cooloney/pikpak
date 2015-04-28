@@ -1,4 +1,4 @@
-Pik Pak - Sharing life
+#Pik Pak - Sharing life#
 
 Pik Pak is a picture version of Yik Yak. In Pik Pak, people can anonymously share pictures and others can see the pictures based on the geolocation information.
 
