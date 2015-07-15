@@ -1,7 +1,7 @@
 $positive: #8a6de9;
 
-@import '.meteor/local/build/programs/server/assets/packages/meteoric_ionic-sass/ionic';
-@import '.meteor/local/build/programs/server/assets/packages/meteoric_ionicons-sass/ionicons';
+@import '../../.meteor/local/build/programs/server/assets/packages/meteoric_ionic-sass/ionic';
+@import '../../.meteor/local/build/programs/server/assets/packages/meteoric_ionicons-sass/ionicons';
 
 .ionic-body.platform-android {
   font-family: "Roboto", sans-serif;

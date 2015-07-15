@@ -10,4 +10,5 @@ Template.home.helpers
     l = Session.get 'keyLocation'
     if l
       # Find documents in 3km range
-      Pictures.find {"loc": {$near : l, $maxDistance : 3/111.12}}, {sort : {time : -1}}
+      # Pictures.find {"loc": {$near : l, $maxDistance : 3/111.12}}, {sort : {time : -1}}
+      Pictures.find {}, limit : 20,  sort : time : -1
